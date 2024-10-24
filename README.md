@@ -1,4 +1,4 @@
-A simple vite loader plugin.
+A simple vite loader plugin - https://www.npmjs.com/package/vite-plugin-twigjs-loader
 
 1. Installation
 ```bash
