@@ -21,7 +21,7 @@ export default {
 };
 ```
 
-3. Import twig components.
+3. Import twig components. This example shows using the plugin in a storybook story.
 
 ```javascript
 // this is a function you can call, that renders to html via twigjs
