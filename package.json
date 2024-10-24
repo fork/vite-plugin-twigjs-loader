@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A Vite plugin for loading twig files. Similar to the twigjs-loader",
   "main": "index.js",
+  "type": "module",
   "keywords": [
     "twig",
     "vite",
