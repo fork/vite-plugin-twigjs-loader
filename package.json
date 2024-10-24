@@ -1,0 +1,25 @@
+{
+  "name": "vite-plugin-twigjs-loader",
+  "version": "1.0.0",
+  "description": "A Vite plugin for loading twig files. Similar to the twigjs-loader",
+  "main": "index.js",
+  "keywords": [
+    "twig",
+    "vite",
+    "vite-plugin"
+  ],
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonasLeonhard/vite-plugin-twigjs-loader.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "twig": "^1.17.1"
+  },
+  "types": "./types.d.ts",
+  "files": [
+    "index.js",
+    "types.d.ts"
+  ]
+}
