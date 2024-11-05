@@ -29,8 +29,8 @@ export default ({ command }) => ({
       targets: [
         {
           src: './src',
-          // INFO: for the 'storybook serve' command, we have to copy all twig files to the .storybook folder, because they will be loaded dynamically by twig on the !client side!.
-          // For normal builds, we copy them to storybook-static
+          // INFO: Without this viteStaticCopy of your twig components, your static storybook build will throw an error. This is because twig file will not be bundled by default.
+          // For normal builds running "storybook serve", we copy them to the ./.storybook folder
           dest: command === 'serve' ? './.storybook' : '.'
         }
       ]
@@ -47,6 +47,7 @@ export default ({ command }) => ({
 3. Import twig components. This example shows using the plugin in a storybook story.
 
 ```javascript
+// src/components/your-twig-components/YourTwigComponent.stories.js
 // this is a function you can call, that renders to html via twigjs
 import YourTwigComponent from './YourTwigComponent.twig';
 
