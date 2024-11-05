@@ -38,7 +38,7 @@ export default ({ command }) => ({
   ],
   resolve: {
     alias: {
-      '@webprojects/ui-pattern-library': __dirname
+      '@project': __dirname
     }
   }
 });
