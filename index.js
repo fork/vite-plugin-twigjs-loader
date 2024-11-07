@@ -32,7 +32,6 @@ export default function twigPlugin(options = {}) {
         allowInlineIncludes: true,
         ...options,
         rethrow: true,
-        async: false,
         // INFO: id is a filesystem path. We make it relative, since twig tries to load it as a url in the browser.
         href: path.relative(projectRoot, id),
         namespaces: Object.entries(options.namespaces || {}).reduce(
