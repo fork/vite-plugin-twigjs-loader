@@ -1,4 +1,3 @@
-import { mergeConfig } from "vite";
 import path from "path";
 import Twig from "twig";
 import fs from "fs";
@@ -23,16 +22,6 @@ export default function twigPlugin(options = {}) {
   return {
     name: "vite-plugin-storybook-twig",
     enforce: "pre",
-
-    // Add config hook to modify Vite's configuration
-    config(config) {
-      return mergeConfig(config, {
-        resolve: {
-          extensions: [".twig", ...(config.resolve?.extensions || [])],
-        },
-        assetsInclude: ["**/*.twig"],
-      });
-    },
 
     configResolved(resolvedConfig) {
       viteConfig = resolvedConfig;
