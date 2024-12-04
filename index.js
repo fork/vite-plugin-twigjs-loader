@@ -152,7 +152,10 @@ export default function twigPlugin(options = {}) {
           }
 
           const importStatements = Array.from(dependencies)
-            .map((dep) => `import "${dep}";`)
+            .map(
+              (dep, index) =>
+                `import { registerTemplate as registerTemplate_${index}} from "${dep}";`,
+            )
             .join("\n");
 
           // INFO: the id currently contains the actual path to the twig template
@@ -172,17 +175,27 @@ export default function twigPlugin(options = {}) {
           // Create the template render function
           return `
             import Twig from 'twig';
+            Twig.cache(false);
             ${importStatements}
 
-            const template = Twig.twig(${JSON.stringify({
-              ...twigOptions,
-              path: undefined, // remove the path from the original twigOptions, otherwise twig will try to import from that path instead.
-              id: twigImportPath, // we have to make sure this importPath is equal to the actual include paths, as twig will try to load included templates by this id.
-              data: tokens,
-            })});
+            const registerTemplate = () => {
+              ${Array.from(dependencies)
+                .map((_dep, index) => `registerTemplate_${index}();`)
+                .join("\n")}
+
+              return Twig.twig(${JSON.stringify({
+                ...twigOptions,
+                path: undefined, // remove the path from the original twigOptions, otherwise twig will try to import from that path instead.
+                id: twigImportPath, // we have to make sure this importPath is equal to the actual include paths, as twig will try to load included templates by this id.
+                data: tokens,
+              })});
+            };
+
+            export { registerTemplate };
 
             export default function render(context = {}) {
               try {
+                const template = registerTemplate();
                 return template.render(context);
               } catch (error) {
                 console.error('Error rendering Twig template in ${id}:', error);
